@@ -54,7 +54,7 @@ class Config
 
         // set variable from config file
         foreach ($configList as $key => $value) {
-            define(strtoupper(trim($this->file, '.')).'_'.$key, $value);
+            define($key, $value);
         }
     }
 }
