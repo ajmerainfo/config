@@ -1,6 +1,6 @@
 # PHP Config
 -------------
-`.config`: config file reader and user anywhere in environment. 
+`.config`: config file reader and use anywhere in environment. Very simple user configuration settings anywhere in project.
 
 ## Requirements
 
