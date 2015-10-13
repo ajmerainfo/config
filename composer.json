@@ -1,6 +1,6 @@
 {
   "name": "ajmerainfo/config",
-  "description": "Read config file and load config variable from .config by $_CONFIG",
+  "description": "Read config file and load config variable and access by global",
   "keywords": ["config", "ajmerainfo"],
   "homepage": "http://github.com/ajmerainfo/config",
   "license" : "BSD",
