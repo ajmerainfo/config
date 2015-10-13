@@ -37,11 +37,11 @@ class Config
         // set again setting of auto_detect_line_endings
         ini_set('auto_detect_line_endings', $autodetect);
 
-        // Remove all lines start with hash (#)
+        // Remove all lines start with hash (#) and dash (-)
         foreach ($lines as $key => $value) {
             $lines[$key] = trim($value);
 
-            if (trim($value)[0] === '#' || trim($value)[0] === '#') {
+            if (trim($value)[0] === '#' || trim($value)[0] === '-') {
                 unset($lines[$key]);
             }
         }
