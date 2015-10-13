@@ -1,6 +1,6 @@
 {
   "name": "ajmerainfo/config",
-  "description": "Read config file and load config variable and access by global",
+  "description": "Config variables access by globally anywhere",
   "keywords": ["config", "ajmerainfo"],
   "homepage": "http://github.com/ajmerainfo/config",
   "license" : "BSD",
