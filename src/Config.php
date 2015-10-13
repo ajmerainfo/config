@@ -22,4 +22,8 @@ class Config
     public function TestGet(){
         echo "Rut test 2 for test package";
     }
+
+    public function TestThree(){
+        echo "Rut test 3 for test package";
+    }
 }
