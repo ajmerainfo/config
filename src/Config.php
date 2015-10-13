@@ -18,4 +18,8 @@ class Config
     public function Test(){
         echo "Hello from first Package";
     }
+
+    public function TestGet(){
+        echo "Rut test 2 for test package";
+    }
 }
