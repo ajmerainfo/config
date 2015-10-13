@@ -1,6 +1,7 @@
 # PHP Config
 -------------
-`.config`: config file reader and use anywhere in environment. Very simple user configuration settings anywhere in project.
+`.config`: config file reader and use anywhere in environment. Very simple user configuration settings 
+anywhere in project.
 
 ## Requirements
 
@@ -28,16 +29,17 @@ Create a new loader from begining request:
 
 ```php
 <?php
-// Don't forget to load autoload file.
+// Don't forget to load autoload composer file.
 // require __DIR__ . '/vendor/autoload.php'; 
 
-new Ajmerainfo\Config(__DIR__);
+use Ajmerainfo\Config;
+Config::init(__DIR__); // root path where .config file will found
 
 // Optional you can pass file name by second parameters
-// new Ajmerainfo\Config(__DIR__, '.myconfig');
+// Config::init(__DIR__, '.myconfig');
 ```
 
-After load file you can call direct config parameter like follwing code
+After load file you can call direct config parameter like following code
 
 ```text
 // .config file on root
@@ -57,11 +59,15 @@ You can call variable like below in PHP code
 ```php
 <?php
 
-echo DB_NAME;
+echo Config::get('DB_NAME');
 // output: test_database
 
-echo API_KEY;
+echo Config::get('API_KEY');
 // output: sdfds6549sdf7SDFD@#$55
+
+echo Config::get('DUMMY', 'Default Value');
+// output: Default Value
+// Get default value
 
 ```
 
@@ -70,3 +76,5 @@ You can use comment by start with hash`#` or dash`-` sign.
 -----
 
 Let me know if any issue or any feature require.
+
+------
