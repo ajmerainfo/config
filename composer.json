@@ -1,0 +1,22 @@
+{
+  "name": "ajmerainfo/config",
+  "description": "Read config file and load config variable from .config by $_CONFIG",
+  "keywords": ["config", "ajmerainfo"],
+  "homepage": "http://github.com/ajmerainfo/config",
+  "license" : "BSD",
+  "authors" : [
+    {
+      "name": "Keyur Ajmera",
+      "email": "ajmerainfo@gmail.com",
+      "homepage": "http://www.ajmerainfo.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ajmerainfo\\": "src/"
+    }
+  }
+}
