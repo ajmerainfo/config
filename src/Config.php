@@ -12,18 +12,49 @@
 
 namespace Ajmerainfo;
 
-
 class Config
 {
-    public function Test(){
-        echo "Hello from first Package";
+    protected $configList;
+    protected $file;
+
+    public function __construct($path, $file = '.config')
+    {
+        $this->file = $file;
+
+        $filePath = rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$file;
+
+        $this->setConfigVariable($filePath);
     }
 
-    public function TestGet(){
-        echo "Rut test 2 for test package";
-    }
+    protected function setConfigVariable($path)
+    {
+        // get current setting of auto_detect_line_endings
+        $autodetect = ini_get('auto_detect_line_endings');
 
-    public function TestThree(){
-        echo "Rut test 3 for test package";
+        ini_set('auto_detect_line_endings', '1');
+        $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        // set again setting of auto_detect_line_endings
+        ini_set('auto_detect_line_endings', $autodetect);
+
+        // Remove all lines start with hash (#)
+        foreach ($lines as $key => $value) {
+            $lines[$key] = trim($value);
+
+            if (trim($value)[0] === '#' || trim($value)[0] === '#') {
+                unset($lines[$key]);
+            }
+        }
+
+        // create new array with key and value
+        $configList = array();
+        foreach ($lines as $line) {
+            $configList[ explode('=', $line, 2)[0] ] = explode('=', $line, 2)[1];
+        }
+
+        // set variable from config file
+        foreach ($configList as $key => $value) {
+            define(strtoupper(trim($this->file, '.')).'_'.$key, $value);
+        }
     }
 }
