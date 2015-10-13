@@ -67,7 +67,7 @@ echo Config::get('API_KEY');
 
 echo Config::get('DUMMY', 'Default Value');
 // output: Default Value
-// Get default value
+// Get default value if key not found in config file
 
 ```
 
