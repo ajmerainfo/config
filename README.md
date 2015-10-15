@@ -32,11 +32,9 @@ Create a new loader from begining request:
 // Don't forget to load autoload composer file.
 // require __DIR__ . '/vendor/autoload.php'; 
 
-use Ajmerainfo\Config;
-Config::init(__DIR__); // root path where .config file will found
-
 // Optional you can pass file name by second parameters
-// Config::init(__DIR__, '.myconfig');
+Config::init(__DIR__, '.myconfig');
+// no need to init function call if file name is .config and located on root of project
 ```
 
 After load file you can call direct config parameter like following code
