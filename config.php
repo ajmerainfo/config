@@ -7,20 +7,40 @@
  * Date: 10/12/2015
  * Time: 5:09 PM
  *
- * Read .config file and load all variables
+ * Read .config file and load all variables and access by
+ * - Config::get('VARIABLE NAME');
+ *
  */
 
 class Config
 {
+    /**
+     * store all list of configuration
+     *
+     * @var array
+     */
     private static $configList;
 
+    /**
+     * with application load initial all list of configuration from
+     * .config file
+     *
+     * @param string $path
+     * @param string $file
+     */
     public static function init($path, $file = '.config')
     {
+        // get file path of '.config' file
         $filePath = rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$file;
 
-        self::setConfigVariable($filePath);
+        self::readFileAndSetInArray($filePath);
     }
 
+    /**
+     * @param string $key
+     * @param null $defaultValue
+     * @return object
+     */
     public static function get($key, $defaultValue = null)
     {
         if (!isset(self::$configList))
@@ -36,7 +56,38 @@ class Config
         }
     }
 
-    protected static function setConfigVariable($filePath)
+    /**
+     * remove comments from lines
+     * - Comments consider start line with '#', '-' or '=' sign
+     *
+     * @param array $lines
+     * @return array mixed
+     */
+    private static function removeCommentFromLines($lines)
+    {
+        foreach ($lines as $key => $value) {
+
+            // trim all lines and set again in array
+            $lines[$key] = trim($value);
+
+            // Remove all lines start with hash (#), dash (-) and equal (=)
+            if (trim($value)[0] === '#'
+                || trim($value)[0] === '-'
+                || trim($value)[0] === '=') {
+                unset($lines[$key]);
+            }
+        }
+
+        return $lines;
+    }
+
+    /**
+     * read '.config' file and set all config variable on accessible
+     * array by `Config::get()`
+     *
+     * @param string $filePath
+     */
+    protected static function readFileAndSetInArray($filePath)
     {
         // read file
         $lines = self::readFile($filePath);
@@ -51,6 +102,12 @@ class Config
         }
     }
 
+    /**
+     * read '.config' file and return all lines
+     *
+     * @param string $filePath
+     * @return array
+     */
     private static function readFile($filePath)
     {
         // get current setting of auto_detect_line_endings
@@ -63,23 +120,6 @@ class Config
         ini_set('auto_detect_line_endings', $autodetect);
 
         // return all lines
-        return $lines;
-    }
-
-    private static function removeCommentFromLines($lines)
-    {
-        foreach ($lines as $key => $value) {
-            $lines[$key] = trim($value);
-
-            // Remove all lines start with hash (#), dash (-) and equal (=)
-            if (trim($value)[0] === '#'
-                || trim($value)[0] === '-'
-                || trim($value)[0] === '=')
-            {
-                unset($lines[$key]);
-            }
-        }
-
         return $lines;
     }
 }
