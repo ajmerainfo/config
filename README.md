@@ -63,6 +63,13 @@ echo Config::get('DB_NAME');
 echo Config::get('API_KEY');
 // output: sdfds6549sdf7SDFD@#$55
 
+// With under any namespace
+echo \Config::get('API_KEY');
+
+// call other way from anywhere
+getConfig('API_KEY');
+getConfig('API_KEY', 'DEFAULT VALUE IF NOT FOUND');
+
 echo Config::get('DUMMY', 'Default Value');
 // output: Default Value
 // Get default value if key not found in config file

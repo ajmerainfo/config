@@ -12,8 +12,8 @@
  *
  */
 
-class Config
-{
+class Config {
+
     /**
      * store all list of configuration
      *
@@ -121,5 +121,16 @@ class Config
 
         // return all lines
         return $lines;
+    }
+}
+
+/**
+ * add `getConfig()` function for configuration call without namespace call
+ * function can be call from anywhere global
+ *
+ */
+if(!function_exists("getConfig")) {
+    function getConfig($key, $defaultValue = null) {
+        return Config::get($key, $defaultValue);
     }
 }
